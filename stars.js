@@ -5,7 +5,6 @@
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d', {alpha:false});
   if (!ctx) return;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let width=0, height=0, depth=1600, focus=1, stars=[], frame=0, last=0;
   function star(initial) {
     return {x:(Math.random()-.5)*width*depth/focus*1.32,
@@ -20,7 +19,6 @@
     ctx.setTransform(scale,0,0,scale,0,0);
     focus=Math.max(width,height)*.78;
     stars=Array.from({length:width<600?560:1050},()=>star(true));
-    if (reduced.matches) draw(0);
   }
   function draw(elapsed) {
     ctx.fillStyle='#050609'; ctx.fillRect(0,0,width,height);
@@ -44,11 +42,10 @@
   }
   function motion() {
     cancelAnimationFrame(frame);last=0;
-    if(reduced.matches||document.hidden)draw(0);
+    if(document.hidden)draw(0);
     else frame=requestAnimationFrame(tick);
   }
   addEventListener('resize',resize,{passive:true});
   document.addEventListener('visibilitychange',motion);
-  reduced.addEventListener('change',motion);
   resize();motion();
 })();

@@ -2,7 +2,7 @@
 
 Source for the company holding page at https://superfastrobotics.com/.
 
-The name-card front's blue and cream starfield is rendered with a small, dependency-free canvas animation. The supplied wordmark is used unchanged. Reduced-motion preferences are respected.
+The name-card front's blue and cream starfield is rendered with a small, dependency-free canvas animation. The supplied wordmark is used unchanged. The starfield always animates while the page is visible, regardless of reduced-motion preferences, and pauses while the page is hidden.
 
 Robot Skill Hub is a separate project: https://hub.superfastrobotics.com/.
 
