@@ -15,3 +15,11 @@ GitHub Pages serves the static files from `main` at the repository root. No buil
 To publish an entry, duplicate the sample HTML, update its title, date, description and canonical URL, replace the placeholder with the demo video and notes, and add a link to the list. Use a native `<video controls playsinline preload="metadata">` element for uploaded footage. Update the entry count and remove the sample label when the entry contains real work.
 
 `favicon.png` is the supplied SFR icon, used on the home, writings and article pages.
+
+## Demo
+
+`demo.html` is the shareable video page at https://superfastrobotics.com/demo.html. It uses `demo.css`, a native video player with playback and fullscreen controls, and `demo-001-poster.jpg` extracted from the footage. The page has no Writings navigation.
+
+`demo-001.mp4` is a web-delivery copy with H.264 video, AAC audio and fast-start metadata. It retains the full duration, 1920x1080 resolution and 30 fps. Source video files are kept locally.
+
+Add the detailed experiment report below the video figure in `demo.html`, keeping the same URL so existing shared links continue to work.
