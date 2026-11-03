@@ -48,3 +48,42 @@
   .table-scroll th, .table-scroll td { padding-inline: 3px; }
   .table-scroll thead th { font-size: 10px; }
 }
+
+.conditions-plate { margin: 32px 0 0; scroll-margin-top: 22px; }
+.conditions-plate > figcaption { padding-bottom: 10px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 17px; letter-spacing: -.025em; }
+.plate-set { margin-top: 18px; }
+.plate-set + .plate-set { margin-top: 25px; }
+.plate-set h3 { margin: 0 0 7px; color: var(--ink); font-size: 14px; font-weight: 400; }
+.plate-grid { display: grid; grid-template-columns: 76px repeat(3, minmax(0, 1fr)); gap: 4px; align-items: center;
+  grid-template-areas: ". tangerine banana tomato" "round rt rb rm" "rectangular xt xb xm"; }
+.plate-axis { color: #adaeb4; font-size: 11px; line-height: 1.4; }
+.plate-axis:is(.tangerine,.banana,.tomato) { padding-bottom: 2px; text-align: center; }
+.plate-axis.round { grid-area: round; }
+.plate-axis.rectangular { grid-area: rectangular; }
+.plate-axis.tangerine { grid-area: tangerine; }
+.plate-axis.banana { grid-area: banana; }
+.plate-axis.tomato { grid-area: tomato; }
+.round-tangerine { grid-area: rt; }.round-banana { grid-area: rb; }.round-tomato { grid-area: rm; }
+.rectangular-tangerine { grid-area: xt; }.rectangular-banana { grid-area: xb; }.rectangular-tomato { grid-area: xm; }
+.plate-photo { display: block; min-width: 0; background: #101116; cursor: zoom-in; }
+.plate-photo img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; }
+.plate-photo:is(:hover,:focus-visible) { outline: 2px solid var(--accent); outline-offset: 0; z-index: 1; }
+.photo-viewer { width: min(1120px, 96vw); max-width: 96vw; max-height: 96vh; max-height: 96dvh; margin: auto; padding: 0; border: 1px solid #424653; background: #090b10; color: var(--ink); }
+.photo-viewer::backdrop { background: rgb(0 0 0 / .88); }
+.viewer-body { padding: 0 clamp(8px, 1.5vw, 20px); }
+.viewer-bar, .viewer-controls { display: flex; align-items: center; gap: 8px; font: 400 12px/1.45 Plex, monospace; }
+.viewer-bar { justify-content: space-between; }
+.viewer-bar p { margin: 5px 0; }
+.photo-viewer button { min-width: 44px; min-height: 44px; padding: 4px 6px; border: 0; background: none; color: var(--ink); font: inherit; cursor: pointer; }
+.photo-viewer button:hover { color: #afbdff; }
+.viewer-controls { justify-content: center; color: var(--muted); }
+.viewer-frame { display: grid; place-items: center; background: #050609; line-height: 0; }
+.viewer-frame img { display: block; width: 100%; max-height: calc(94vh - 104px); max-height: calc(94dvh - 104px); aspect-ratio: 16/9; object-fit: contain; }
+@media (max-width: 560px) {
+  .plate-grid { grid-template-columns: 61px repeat(2,minmax(0,1fr)); gap: 3px;
+    grid-template-areas: ". round rectangular" "tangerine rt xt" "banana rb xb" "tomato rm xm"; }
+  .plate-axis { font-size: 10.5px; }
+  .plate-axis:is(.round,.rectangular) { padding-block: 2px; text-align: center; }
+  .plate-axis:is(.tangerine,.banana,.tomato) { padding: 0; text-align: left; }
+  .plate-set + .plate-set { margin-top: 20px; }
+}

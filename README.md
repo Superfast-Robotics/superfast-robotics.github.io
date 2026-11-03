@@ -10,12 +10,12 @@ GitHub Pages serves the static files from `main` at the repository root. No buil
 
 ## Writings
 
-`writings.html` lists the research essay *The Little Magic* (`writing-001.html`) and the experiment report *Demo 001 — Our First Magic* (`demo.html`). The homepage navigation link stays hidden; the journal and articles are available by direct link.
+The index is `writings/index.html` (`/writings/`). The articles are `writings/essay-001.html` and `writings/demo-001.html`. GitHub Pages serves their public URLs without the extension. The old root HTML pages redirect to the new URLs, preserving query strings and fragments in the browser. The homepage navigation stays hidden. Each article includes references and a downloadable BibTeX entry alongside its HTML file.
 
 The pages are plain HTML. `writings.css` sets the journal typography, section navigation and reading layout. `littlebit-factorization.svg` illustrates low-rank matrix factorization. The site icon is `favicon.png`.
 
 ## Demo 001
 
-Keep https://superfastrobotics.com/demo.html stable for shared links. `#footage` opens at the video and `#results` opens at the trial results. The report includes the trial protocol, condition breakdowns and their shared denominator. Add the evaluation photo grid at the marked location in the results section when the images are supplied.
+The experiment is at https://superfastrobotics.com/writings/demo-001. `#footage` opens at the video, `#setups` at the 18 photographed evaluation conditions, and `#results` at the trial results section. The grid groups photographs by location, fruit and basket shape. The 640×360 thumbnails in `assets/` end in `-sm.webp`; each links to the 1920×1080 version with the same stem.
 
 `demo-001.mp4` is the 1920×1080, 30 fps web copy (H.264/AAC, fast-start). The native player uses `demo-001-poster.jpg`; `demo.js` provides the Full screen button where supported. Source video files are kept locally.
