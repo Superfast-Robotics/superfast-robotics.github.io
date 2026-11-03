@@ -18,7 +18,8 @@
   <meta property="og:image:alt" content="Superfast Robotics demo: a robot moving fruit from a table into a basket.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/style.css?v=20261103-writings">
-  <link rel="stylesheet" href="/demo.css?v=20261103">
+  <link rel="stylesheet" href="/demo.css?v=20261103-fullscreen">
+  <script src="/demo.js?v=20261103" defer></script>
 </head>
 <body class="demo-page">
   <header class="site-header">
@@ -29,11 +30,12 @@
       <h1>Demo 001</h1>
     </header>
     <figure class="demo-media">
-      <video controls playsinline preload="metadata" poster="/demo-001-poster.jpg" width="1920" height="1080" aria-label="Superfast Robotics Demo 001">
+      <video id="demo-video" controls playsinline preload="metadata" poster="/demo-001-poster.jpg" width="1920" height="1080" aria-label="Superfast Robotics Demo 001">
         <source src="/demo-001.mp4" type="video/mp4">
         Your browser does not support embedded video. <a href="/demo-001.mp4">Open the demo video</a>.
       </video>
-      <figcaption><span>Superfast Robotics</span><a href="/demo-001.mp4">Open video <span aria-hidden="true">↗</span></a></figcaption>
+      <figcaption><span>Superfast Robotics</span><button class="fullscreen-button" type="button" aria-controls="demo-video" hidden>Full screen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M6 2H2v4m8-4h4v4M2 10v4h4m8-4v4h-4"/></svg></button></figcaption>
+      <p class="video-status" role="status" hidden>Could not open full screen. Please use the video player's controls.</p>
     </figure>
     <!-- Add the detailed experiment report here, below the video. Keep this page URL stable for sharing. -->
   </main>
