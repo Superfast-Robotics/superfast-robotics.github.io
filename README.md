@@ -10,16 +10,12 @@ GitHub Pages serves the static files from `main` at the repository root. No buil
 
 ## Writings
 
-`writings.html` lists demos and experiment notes. `writing-001.html` is an explicitly labeled sample entry with an empty video area and no claimed results. Shared site styles live in `style.css`; the list and article layouts live in `writings.css`.
+`writings.html` lists the research essay *The Little Magic* (`writing-001.html`) and the experiment report *Demo 001 — Our First Magic* (`demo.html`). The homepage navigation link stays hidden; the journal and articles are available by direct link.
 
-To publish an entry, duplicate the sample HTML, update its title, date, description and canonical URL, replace the placeholder with the demo video and notes, and add a link to the list. Use a native `<video controls playsinline preload="metadata">` element for uploaded footage. Update the entry count and remove the sample label when the entry contains real work.
+The pages are plain HTML. `writings.css` sets the journal typography, section navigation and reading layout. `littlebit-factorization.svg` illustrates low-rank matrix factorization. The site icon is `favicon.png`.
 
-`favicon.png` is the supplied SFR icon, used on the home, writings and article pages.
+## Demo 001
 
-## Demo
+Keep https://superfastrobotics.com/demo.html stable for shared links. `#footage` opens at the video and `#results` opens at the trial results. The report includes the trial protocol, condition breakdowns and their shared denominator. Add the evaluation photo grid at the marked location in the results section when the images are supplied.
 
-`demo.html` is the shareable video page at https://superfastrobotics.com/demo.html. It uses `demo.css`, a native video player with playback and fullscreen controls, and `demo-001-poster.jpg` extracted from the footage. The page has no Writings navigation.
-
-`demo-001.mp4` is a web-delivery copy with H.264 video, AAC audio and fast-start metadata. It retains the full duration, 1920x1080 resolution and 30 fps. Source video files are kept locally.
-
-Add the detailed experiment report below the video figure in `demo.html`, keeping the same URL so existing shared links continue to work.
+`demo-001.mp4` is the 1920×1080, 30 fps web copy (H.264/AAC, fast-start). The native player uses `demo-001-poster.jpg`; `demo.js` provides the Full screen button where supported. Source video files are kept locally.

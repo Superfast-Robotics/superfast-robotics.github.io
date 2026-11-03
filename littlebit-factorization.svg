@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 136" width="320" height="136">
+  <title>Low-rank factorization</title>
+  <desc>A large square matrix is approximated by a tall matrix, a small diagonal matrix, and a wide matrix.</desc>
+  <defs>
+    <pattern id="cells" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect x="1" y="1" width="2.1" height="2.1" fill="#8295e9"/>
+    </pattern>
+    <pattern id="bright" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect x="1" y="1" width="2.1" height="2.1" fill="#edeadd"/>
+    </pattern>
+    <clipPath id="matrix"><rect x="15" y="25" width="70" height="70"/></clipPath>
+  </defs>
+  <g fill="none" stroke="#363d56" stroke-width=".8">
+    <path d="M6 10h10m-10 0v8m308-8h-10m10 0v8M6 128h10m-10 0v-8m308 8h-10m10 0v-8"/>
+  </g>
+  <g fill="url(#cells)">
+    <path d="M15 25h70v70H15z" opacity=".76"/>
+    <path d="M135 25h15v70h-15zM183 52h15v15h-15zM230 52h70v15h-70z"/>
+  </g>
+  <g clip-path="url(#matrix)" fill="url(#bright)">
+    <path d="M10 26 83 92l12-13L26 12z"/>
+    <path d="m5 57 48 45H35L5 74zm47-37 42 39V48L65 20z" opacity=".66"/>
+  </g>
+  <g fill="none" stroke="#acb8fa" stroke-width="1">
+    <path d="M17 22h-5v76h5m66-76h5v76h-5M136 22h-4v76h4m13-76h4v76h-4M184 49h-4v21h4m13-21h4v21h-4M231 49h-4v21h4m68-21h4v21h-4"/>
+    <path d="M102 57c4-4 8 4 12 0m-12 5c4-4 8 4 12 0M165 60h2m47 0h2" stroke-linecap="round"/>
+  </g>
+  <g fill="#dfdfd5"><path d="M184 53h2v2h-2zm5 5h2v2h-2zm5 5h2v2h-2z"/></g>
+  <g fill="#989fac" font-family="monospace" font-size="10" text-anchor="middle">
+    <text x="50" y="115">W</text><text x="143" y="115">U</text><text x="191" y="115">Σ</text><text x="265" y="115">Vᵀ</text>
+  </g>
+</svg>

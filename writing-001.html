@@ -3,42 +3,83 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Test 001 — Superfast Robotics</title>
-  <meta name="description" content="A sample entry for a Superfast Robotics demo and experiment notes.">
+  <title>The Little Magic — Superfast Robotics</title>
+  <meta name="description" content="From 0.1 bits per weight to a robot moving fruit: the story of LittleBit and the question that led us into robotics.">
   <meta name="theme-color" content="#050609">
   <link rel="icon" href="/favicon.png?v=20261103" type="image/png" sizes="512x512">
   <link rel="canonical" href="https://superfastrobotics.com/writing-001.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Superfast Robotics">
+  <meta property="og:title" content="The Little Magic — Superfast Robotics">
+  <meta property="og:description" content="From 0.1 bits per weight to a robot moving fruit: the story of LittleBit and the question that led us into robotics.">
+  <meta property="og:url" content="https://superfastrobotics.com/writing-001.html">
   <link rel="stylesheet" href="/style.css?v=20261103-writings">
-  <link rel="stylesheet" href="/writings.css?v=20261103">
+  <link rel="stylesheet" href="/writings.css?v=20261103-journal">
 </head>
 <body class="reading-page">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="site-brand" href="/" aria-label="Superfast Robotics home"><img src="/assets/wordmark.png" alt="Superfast Robotics" width="1182" height="159"></a>
-    <nav class="site-nav" aria-label="Main navigation" hidden><a href="/writings.html" aria-current="page">Writings</a></nav>
   </header>
-  <main class="writings-main post-main">
-    <a class="back-link" href="/writings.html"><span aria-hidden="true">← </span>All writings</a>
+  <main id="main" class="journal post">
+    <a class="back" href="/writings.html"><span aria-hidden="true">←</span> All writings</a>
     <article>
-      <header class="post-header">
-        <div class="post-meta"><time datetime="2026-11-03">2026.11.03</time><span class="entry-type">Demo</span><span class="sample-label">Sample entry</span></div>
-        <h1 class="page-title">Test 001</h1>
-        <p class="page-intro">A blank entry for our first demo and experiment notes.</p>
+      <header class="mast post-mast">
+        <div>
+          <div class="publication"><span class="kicker">Research essay / 001</span><time datetime="2026-11-03">03 Nov 2026</time></div>
+          <h1>The Little Magic</h1>
+          <p class="deck">How small can a language model get before it stops making sense?</p>
+        </div>
+        <img class="matrix-figure" src="/littlebit-factorization.svg" alt="A large weight matrix approximated by three smaller factors." width="320" height="136">
       </header>
-      <figure class="video-placeholder">
-        <span class="video-label" aria-hidden="true">DEMO / 001</span>
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="7" y="13" width="23" height="23" rx="2"/><path d="m30 20 11-6v21l-11-6"/></svg>
-        <figcaption>Demo video<span>No video added yet.</span></figcaption>
-      </figure>
-      <section class="post-section" aria-labelledby="experiment-title">
-        <h2 id="experiment-title">Experiment</h2>
-        <p>No experiment notes yet.</p>
-      </section>
-      <section class="post-section" aria-labelledby="observations-title">
-        <h2 id="observations-title">Observations</h2>
-        <p>No observations yet.</p>
-      </section>
+      <div class="article-grid">
+        <nav class="contents" aria-label="In this article">
+          <p class="micro">In this article</p>
+          <ol>
+            <li><a href="#littlebit"><span aria-hidden="true">01</span>LittleBit</a></li>
+            <li><a href="#on-device"><span aria-hidden="true">02</span>On-device models</a></li>
+            <li><a href="#robotics"><span aria-hidden="true">03</span>Into robotics</a></li>
+          </ol>
+        </nav>
+        <div class="manuscript">
+          <section id="littlebit" class="chapter" aria-labelledby="heading-littlebit">
+            <h2 id="heading-littlebit" class="chapter-title"><span aria-hidden="true">01 / </span>LittleBit</h2>
+            <p>In early 2025, we tried to find out. We made a model much smaller. It still worked. We made it smaller again. Still working.</p>
+            <p>This was getting interesting.</p>
+            <p>That was the beginning of LittleBit.</p>
+            <p>The rough recipe: approximate a large weight matrix with a combination of smaller matrices (SVD), represent those matrices with very few bits (low-bit quantization), and let the original model teach the compressed one how to behave (QAKD). Three technical names for a simple question: how much space does intelligence actually need?</p>
+            <p>We pushed down to an effective 0.1 bits per original weight. Compared with 16-bit weights, that is a 160x reduction in the bits used to represent the compressed weights. That ratio applies to the compressed weight representation, rather than the entire model’s memory footprint. Even so, 0.1 bits is a strange place to find a working language model.</p>
+            <p>We published <a href="https://arxiv.org/abs/2506.13771">LittleBit</a> in 2025 and presented it at NeurIPS that December. People kept asking us the same question we were asking ourselves:</p>
+            <blockquote><p>“Why does this work?”</p></blockquote>
+            <p>Fair question. We wanted a better answer, too.</p>
+            <p>In July 2026, we presented <a href="https://arxiv.org/abs/2603.00042">LittleBit-2</a> at ICML. It offered a piece of the answer: how you arrange the information matters, as well as how much you keep. Aligning that structure more carefully gave us better performance. A little more understanding. A better model. Still a lot left to figure out.</p>
+          </section>
+          <section id="on-device" class="chapter" aria-labelledby="heading-on-device">
+            <h2 id="heading-on-device" class="chapter-title"><span aria-hidden="true">02 / </span>On-device models</h2>
+            <p>Then came the next question. If this works for LLMs, what else does it work for?</p>
+            <p>We started with speech recognition. We built a remarkably small model that could still recognize speech, and presented the work at <a href="https://www.isca-archive.org/interspeech_2026/index.html">Interspeech 2026</a>. But one of the biggest surprises came from speculative decoding.</p>
+            <p>The idea is simple. A small model drafts the next few tokens. A larger model checks them together. The small model is a fast first-draft writer. It needs to be quick, and its guesses need to be useful.</p>
+            <p>We made that writer roughly 100x smaller. Its acceptance length, the number of draft tokens accepted in a round, still held at about 60–80% of the original draft model’s level. A hundredth of the size, and still writing useful drafts. Think 1 GB becoming roughly 10 MB.</p>
+            <p>The technology reached commercial deployment as a key on-device acceleration model for next-generation Galaxy smartphones. In our internal comparisons, our draft was more than 2x faster than Google’s <a href="https://ai.google.dev/gemma/docs/mtp/overview">Gemma 4 E2B MTP</a> draft. Against <a href="https://www.liquid.ai/blog/lfm2.5-dspark">Liquid’s DSpark</a> draft, it was at most a quarter of the size and about twice as fast.</p>
+            <p>Tiny models were doing useful work on real devices. We call it our little bit of magic.</p>
+          </section>
+          <section id="robotics" class="chapter" aria-labelledby="heading-robotics">
+            <h2 id="heading-robotics" class="chapter-title"><span aria-hidden="true">03 / </span>Into robotics</h2>
+            <p>Then we decided to give it a body.</p>
+            <p>A robot is a demanding place to put intelligence. Cameras and sensors keep sending data. The body needs frequent updates to stay balanced and move. Memory is limited. Chips get hot. Batteries run down. And the physical world does not pause while the model finishes thinking.</p>
+            <p>Intelligence has to fit inside all of that.</p>
+            <p>This was the question LittleBit had been preparing us to ask. Maybe robotics was where this technology belonged all along.</p>
+            <p>We want robots that see, think, and act using the computers inside their own bodies. Robots that do useful work around us, within a practical budget for hardware, power, and memory.</p>
+            <p>So we put a very small model into a real robot.</p>
+            <p>And we saw our first bit of magic. It picked up a piece of fruit and put it in a basket.</p>
+            <p>Here is how that went.</p>
+          </section>
+        </div>
+      </div>
+      <nav class="paired" aria-label="Related writing">
+        <a href="/demo.html"><span><small>Read the experiment</small><span>Demo 001 — Our First Magic</span></span><span class="pair-arrow" aria-hidden="true">→</span></a>
+      </nav>
     </article>
-    <div class="post-end"><a class="back-link" href="/writings.html"><span aria-hidden="true">← </span>Back to writings</a></div>
   </main>
   <footer class="site-footer">contact: <a href="mailto:hello@superfastrobotics.com">hello@superfastrobotics.com</a></footer>
 </body>
