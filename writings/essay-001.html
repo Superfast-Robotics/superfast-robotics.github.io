@@ -18,8 +18,8 @@
   <meta property="og:description" content="From 0.1 bits per weight to a robot moving fruit: the story of LittleBit and the question that led us into robotics.">
   <meta property="og:url" content="https://superfastrobotics.com/writings/essay-001">
   <link rel="stylesheet" href="/style.css?v=20261103-writings">
-  <link rel="stylesheet" href="/writings.css?v=20261103-byline">
-  <script src="/writings.js?v=20261103-byline" defer></script>
+  <link rel="stylesheet" href="/writings.css?v=20261103-citation">
+  <script src="/writings.js?v=20261103-citation" defer></script>
 </head>
 <body class="reading-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -92,18 +92,24 @@
           <section class="backmatter" id="citation" aria-labelledby="citation-title">
             <div class="citation-actions">
               <h2 id="citation-title">Citation</h2>
-              <button type="button" class="copy-bib" hidden>Copy BibTeX</button>
+              <span class="copy-status" role="status"></span>
               <a href="/writings/essay-001.bib" download>Download .bib</a>
             </div>
-            <pre class="bibtex"><code>@misc{lee2026littlemagic,
-  author       = {Lee, Banseok},
-  title        = {{The Little Magic}},
-  year         = {2026},
-  month        = nov,
-  howpublished = {Superfast Robotics},
-  url          = {https://superfastrobotics.com/writings/essay-001}
+            <div class="citation-box">
+              <button type="button" class="copy-bib" aria-label="Copy citation" title="Copy citation" hidden>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <g class="copy-glyph"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></g>
+                  <path class="copied-glyph" d="m5 12 4 4 10-10"/>
+                </svg>
+              </button>
+              <pre class="bibtex"><code>@article{lee2026littlemagic,
+  author = {Banseok Lee},
+  title = {The Little Magic},
+  journal = {Superfast Robotics Writings},
+  year = {2026},
+  note = {superfastrobotics.com/writings/essay-001},
 }</code></pre>
-            <span class="copy-status" role="status"></span>
+            </div>
           </section>
         </div>
       </div>
