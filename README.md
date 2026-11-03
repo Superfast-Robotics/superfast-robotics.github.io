@@ -10,7 +10,7 @@ GitHub Pages serves the static files from `main` at the repository root. No buil
 
 ## Writings
 
-The index is `writings/index.html` (`/writings/`). The articles are `writings/essay-001.html` and `writings/demo-001.html`. GitHub Pages serves their public URLs without the extension. The old root HTML pages redirect to the new URLs, preserving query strings and fragments in the browser. The homepage navigation stays hidden. Each article includes references and a downloadable BibTeX entry alongside its HTML file.
+The homepage links to the index at `writings/index.html` (`/writings/`). The articles are `writings/essay-001.html` and `writings/demo-001.html`. GitHub Pages serves their public URLs without the extension. The old root HTML pages redirect to the new URLs, preserving query strings and fragments in the browser. Each article includes references and a downloadable BibTeX entry alongside its HTML file.
 
 The pages are plain HTML. `writings.css` sets the journal typography, section navigation and reading layout. `littlebit-factorization.svg` illustrates low-rank matrix factorization. The site icon is `favicon.png`.
 
