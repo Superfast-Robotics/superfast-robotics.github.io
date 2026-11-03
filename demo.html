@@ -5,130 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Demo 001 — Our First Magic — Superfast Robotics</title>
   <meta name="description" content="Watch our onboard robot pick-and-place experiment and explore the results: 60 successful trials out of 90 across three new settings.">
-  <meta name="theme-color" content="#050609">
   <link rel="icon" href="/favicon.png?v=20261103" type="image/png" sizes="512x512">
-  <link rel="canonical" href="https://superfastrobotics.com/demo.html">
+  <link rel="canonical" href="https://superfastrobotics.com/writings/demo-001">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Superfast Robotics">
   <meta property="og:title" content="Demo 001 — Our First Magic — Superfast Robotics">
   <meta property="og:description" content="Watch our onboard robot pick-and-place experiment and explore the results: 60 successful trials out of 90 across three new settings.">
-  <meta property="og:url" content="https://superfastrobotics.com/demo.html">
+  <meta property="og:url" content="https://superfastrobotics.com/writings/demo-001">
   <meta property="og:image" content="https://superfastrobotics.com/demo-001-poster.jpg">
   <meta property="og:image:width" content="1920">
   <meta property="og:image:height" content="1080">
   <meta property="og:image:alt" content="A robot moving fruit from a table into a basket.">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/style.css?v=20261103-writings">
-  <link rel="stylesheet" href="/writings.css?v=20261103-journal">
-  <link rel="stylesheet" href="/demo.css?v=20261103-report">
-  <script src="/demo.js?v=20261103" defer></script>
+  <script>location.replace('/writings/demo-001' + location.search + location.hash);</script>
+  <noscript><meta http-equiv="refresh" content="0; url=/writings/demo-001"></noscript>
 </head>
-<body class="reading-page">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <a class="site-brand" href="/" aria-label="Superfast Robotics home"><img src="/assets/wordmark.png" alt="Superfast Robotics" width="1182" height="159"></a>
-  </header>
-  <main id="main" class="journal post">
-    <a class="back" href="/writings.html"><span aria-hidden="true">←</span> All writings</a>
-    <article>
-      <header class="mast post-mast">
-        <div>
-          <div class="publication"><span class="kicker">Experiment report</span><time datetime="2026-11-03">03 Nov 2026</time></div>
-          <h1><span class="demo-id">Demo 001<span class="sr-only"> — </span></span>Our First Magic</h1>
-          <p class="deck">“Put the fruit in the basket.”</p>
-        </div>
-        <dl class="rig">
-          <div><dt>Platform</dt><dd>Jetson Orin NX</dd></div>
-          <div><dt>Memory</dt><dd>16 GB shared</dd></div>
-          <div><dt>Task</dt><dd>Fruit pick-and-place</dd></div>
-        </dl>
-      </header>
-      <div class="article-grid">
-        <nav class="contents" aria-label="In this article">
-          <p class="micro">In this article</p>
-          <ol>
-            <li><a href="#footage"><span aria-hidden="true">01</span>Demo footage</a></li>
-            <li><a href="#setup"><span aria-hidden="true">02</span>Model & setup</a></li>
-            <li><a href="#results"><span aria-hidden="true">03</span>Trial results</a></li>
-            <li><a href="#next"><span aria-hidden="true">04</span>What comes next</a></li>
-          </ol>
-        </nav>
-        <div class="manuscript">
-          <section id="task" class="chapter" aria-labelledby="heading-task">
-            <h2 id="heading-task" class="chapter-title"><span aria-hidden="true">01 / </span>The task</h2>
-            <p>Six words. Plenty can go wrong.</p>
-            <p>A robot has to find the fruit, decide where to move its hand, reach, grasp, carry, and release. If it misses, it has to try again. Now ask it to do all of this using the small computer inside its body.</p>
-            <p>We added one more constraint: compress the language-model backbone by 160x.</p>
-            <p>That sounded a little unreasonable. So we tried it.</p>
-            <figure class="demo-media" id="footage" aria-label="Demo 001 footage">
-              <video id="demo-video" controls playsinline preload="metadata" poster="/demo-001-poster.jpg" width="1920" height="1080" aria-label="Superfast Robotics Demo 001">
-                <source src="/demo-001.mp4" type="video/mp4">
-                Your browser does not support embedded video. <a href="/demo-001.mp4">Open the demo video</a>.
-              </video>
-              <figcaption><span><b>Film 01</b> / Onboard pick-and-place</span><button class="fullscreen-button" type="button" aria-controls="demo-video" hidden>Full screen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M6 2H2v4m8-4h4v4M2 10v4h4m8-4v4h-4"/></svg></button></figcaption>
-              <p class="video-status" role="status" hidden>Could not open full screen. Please use the video player's controls.</p>
-            </figure>
-          </section>
-          <section id="setup" class="chapter" aria-labelledby="heading-setup">
-            <h2 id="heading-setup" class="chapter-title"><span aria-hidden="true">02 / </span>Model &amp; setup</h2>
-            <p>We started with Unitree’s 6B-parameter <a href="https://github.com/unitreerobotics/unifolm-wla">UnifoLM-WLA-1.0</a>. We took the sub-1-bit methods we had researched at Samsung Research, improved them, and applied them to its language-model backbone.</p>
-            <p>The compressed weight representation uses roughly 1/160 of the bits required by FP16. Less than 1%. This does not mean we deleted 99% of the entire 6B model. We packed a core part of its decision-making into much less space.</p>
-            <p>All inference ran on the robot’s onboard NVIDIA Jetson Orin NX, with 16 GB of shared memory. There was no large server offscreen deciding its next move.</p>
-            <p>For compression training, we used FruitCollection from the WLA training data and QAKD to transfer the original model’s behavior. We connected the model to the robot with our preliminary custom IK solver: the part that turns a desired hand position into joint movements.</p>
-            <p>This was an early checkpoint. We had completed less than 10% of the planned training. We had also left out RTC, which could make the motions flow more smoothly. There was plenty left to improve. We put the robot in front of the table anyway.</p>
-          </section>
-          <section id="results" class="chapter" aria-labelledby="heading-results">
-            <h2 id="heading-results" class="chapter-title"><span aria-hidden="true">03 / </span>Trial results</h2>
-            <!-- Add the evaluation photo grid here when available: locations, objects, and basket shapes. -->
-            <p>We tested in three places: a kitchen, a meeting room, and a warehouse. We used three objects: a tangerine, a banana, and a tomato. And two basket shapes: round and rectangular.</p>
-            <p class="protocol"><strong>3 locations × 3 objects × 2 baskets × 5 trials each. 90 trials in total.</strong></p>
-            <p>Each trial started from the home pose and ran for one minute, allowing the robot to recover and retry on its own as it attempted the pick-and-place task. We did no additional training for the evaluation locations or layouts. That is what zero-shot means here: deployment into these new setups. The fruit-moving task itself was already represented in FruitCollection.</p>
-            <p class="outcome">The result: <strong>60 successful trials out of 90. A 66.7% success rate.</strong></p>
-            <div class="table-block">
-              <div class="table-scroll" role="region" aria-label="Pick-and-place trial results" tabindex="0">
-                <table aria-describedby="results-note">
-                  <caption><span>Table 01</span> / Pick-and-place trials</caption>
-                  <thead><tr><th scope="col">Breakdown</th><th scope="col">Condition</th><th scope="col">Successes / Trials</th><th scope="col">Success Rate</th></tr></thead>
-                  <tbody>
-                    <tr><th scope="rowgroup" rowspan="3">Location</th><th scope="row">Kitchen</th><td>22 / 30</td><td><span class="rate-mark" aria-hidden="true" style="--rate:73.3%"></span>73.3%</td></tr>
-                    <tr><th scope="row">Meeting room</th><td>18 / 30</td><td><span class="rate-mark" aria-hidden="true" style="--rate:60.0%"></span>60.0%</td></tr>
-                    <tr><th scope="row">Warehouse</th><td>20 / 30</td><td><span class="rate-mark" aria-hidden="true" style="--rate:66.7%"></span>66.7%</td></tr>
-                  </tbody>
-                  <tbody>
-                    <tr><th scope="rowgroup" rowspan="3">Object</th><th scope="row">Tangerine</th><td>24 / 30</td><td><span class="rate-mark" aria-hidden="true" style="--rate:80.0%"></span>80.0%</td></tr>
-                    <tr><th scope="row">Banana</th><td>11 / 30</td><td><span class="rate-mark" aria-hidden="true" style="--rate:36.7%"></span>36.7%</td></tr>
-                    <tr><th scope="row">Tomato</th><td>25 / 30</td><td><span class="rate-mark" aria-hidden="true" style="--rate:83.3%"></span>83.3%</td></tr>
-                  </tbody>
-                  <tbody>
-                    <tr><th scope="rowgroup" rowspan="2">Basket</th><th scope="row">Round</th><td>31 / 45</td><td><span class="rate-mark" aria-hidden="true" style="--rate:68.9%"></span>68.9%</td></tr>
-                    <tr><th scope="row">Rectangular</th><td>29 / 45</td><td><span class="rate-mark" aria-hidden="true" style="--rate:64.4%"></span>64.4%</td></tr>
-                  </tbody>
-                  <tfoot><tr><th scope="row">Overall</th><th scope="row">All conditions</th><td>60 / 90</td><td>66.7%</td></tr></tfoot>
-                </table>
-              </div>
-              <p id="results-note"><em>The location, object, and basket breakdowns are different views of the same 90 trials.</em></p>
-            </div>
-            <p>Bananas were hard. Eleven successes out of thirty. We have learned how to get down to 0.1 bits. We still have some learning to do about picking up bananas.</p>
-            <p>We look at these numbers and see work ahead. Thirty trials failed. We need more objects, more environments, and direct comparisons with the original model.</p>
-            <p>But we have a starting point. A model whose compressed backbone weights use less than 1% of the FP16 bit budget looked at a new setup, chose its next actions, and moved a real object. On a computer inside the robot.</p>
-            <p>That was our first bit of magic.</p>
-          </section>
-          <section id="next" class="chapter" aria-labelledby="heading-next">
-            <h2 id="heading-next" class="chapter-title"><span aria-hidden="true">04 / </span>What comes next</h2>
-            <p>We have nearly used up the resources we set aside for this first step. There are plenty of experiments left. We want to train further, improve control, and make this work on more robots. We want to turn the research into products people can use.</p>
-            <p>If you want to see what comes next, <a href="mailto:hello@superfastrobotics.com">help us build it</a>. We welcome research funding, robots to test on, and partners who want to bring this technology into real products.</p>
-            <p>Our goal is a robot with System 0, 1, and 2 all running on an Orin-class onboard computer: fast control of its body, immediate responses to what it sees, and planning for what to do next. All inside one robot, working independently of the network, doing useful things in our lives.</p>
-            <p>Today, it moved a piece of fruit.</p>
-            <p>We intend to find out how far this little beginning can go.</p>
-            <p class="signature">Superfast.</p>
-          </section>
-        </div>
-      </div>
-      <nav class="paired" aria-label="Related writing">
-        <a href="/writing-001.html"><span><small>Read the research essay</small><span>The Little Magic</span></span><span class="pair-arrow" aria-hidden="true">→</span></a>
-      </nav>
-    </article>
-  </main>
-  <footer class="site-footer">contact: <a href="mailto:hello@superfastrobotics.com">hello@superfastrobotics.com</a></footer>
-</body>
+<body><p><a href="/writings/demo-001">Demo 001 — Our First Magic</a></p></body>
 </html>
