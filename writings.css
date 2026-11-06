@@ -82,10 +82,10 @@
 .chapter strong { color: var(--ink); }
 .chapter blockquote { margin: 26px 0; padding: 4px 0 4px 22px; border-left: 2px solid var(--accent); }
 .chapter blockquote p { margin: 0; color: var(--ink); font-size: clamp(21px, 2.5vw, 30px); line-height: 1.5; letter-spacing: -.04em; }
-.essay-illustration { width: min(100%, 600px); margin: clamp(28px, 4vw, 42px) auto; }
-.essay-illustration img { display: block; width: 100%; height: auto; }
-.essay-illustration figcaption { display: flex; justify-content: center; align-items: baseline; gap: 10px; margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
-.essay-illustration figcaption span { flex: none; color: #9aaaff; font-variant-numeric: tabular-nums; }
+.essay-illustration { width: min(100%, var(--measure)); margin: clamp(28px, 4vw, 42px) 0; }
+.essay-illustration img { display: block; width: 100%; max-width: 600px; height: auto; margin-inline: auto; }
+.essay-illustration figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; text-align: center; text-wrap: balance; }
+.essay-illustration figcaption span { margin-right: 10px; color: #9aaaff; font-variant-numeric: tabular-nums; }
 .paired { margin-top: clamp(46px, 6vw, 88px); border-block: 1px solid var(--line); }
 .paired a { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0 24px; color: var(--ink); text-decoration: none; }
 .paired small { display: block; margin-bottom: 6px; color: var(--muted); }
