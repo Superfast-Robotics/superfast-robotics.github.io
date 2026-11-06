@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600" height="220">
+  <title>A tiny model, a useful first draft</title>
+  <desc>A small dotted model inside a phone drafts a row of tokens. A larger dotted model checks the draft, with a check mark indicating useful work.</desc>
+  <defs>
+    <pattern id="cells" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect x="2" y="2" width="3" height="3" fill="#8295e9"/>
+    </pattern>
+    <pattern id="signal" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect x="2" y="2" width="3" height="3" fill="#edeadd"/>
+    </pattern>
+    <clipPath id="checker"><rect x="456" y="72" width="80" height="80"/></clipPath>
+  </defs>
+  <g fill="none" stroke="#363d56" stroke-width="1">
+    <path d="M24 37V25h12m528 0h12v12M24 183v12h12m528 0h12v-12"/>
+  </g>
+  <g fill="none" stroke="#acb8fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="70" y="28" width="112" height="164" rx="15"/>
+    <path d="M111 40h30m-30 138h30"/>
+  </g>
+  <rect x="80" y="54" width="92" height="108" rx="3" fill="none" stroke="#363d56" stroke-width="1"/>
+  <rect x="104" y="86" width="44" height="44" rx="3" fill="none" stroke="#acb8fa" stroke-width="1.5"/>
+  <rect x="112" y="94" width="28" height="28" fill="url(#cells)"/>
+  <g fill="none" stroke="#8295e9" stroke-width="1.5" stroke-linecap="round">
+    <path d="M113 81v5m13-5v5m13-5v5m-26 44v5m13-5v5m13-5v5M99 95h5m-5 13h5m-5 13h5m44-26h5m-5 13h5m-5 13h5"/>
+  </g>
+  <path d="M114 98h3v3h-3zm8 8h3v3h-3zm8 8h3v3h-3z" fill="#edeadd"/>
+  <g fill="none" stroke="#acb8fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M200 108h26m-7-5 7 5-7 5M400 108h29m-7-5 7 5-7 5"/>
+  </g>
+  <g fill="url(#cells)" stroke="#8295e9" stroke-width="1">
+    <rect x="244" y="96" width="24" height="24" rx="2"/>
+    <rect x="280" y="96" width="24" height="24" rx="2"/>
+    <rect x="316" y="96" width="24" height="24" rx="2"/>
+    <rect x="352" y="96" width="24" height="24" rx="2"/>
+  </g>
+  <g fill="none" stroke="#566184" stroke-width="1" stroke-linecap="round">
+    <path d="M244 135v6h132v-6m-66 6v14"/>
+    <path d="M456 165v6h80v-6"/>
+  </g>
+  <rect x="456" y="72" width="80" height="80" fill="url(#cells)" opacity=".82"/>
+  <g clip-path="url(#checker)" fill="url(#signal)">
+    <path d="m448 81 14-12 84 82-13 13z"/>
+    <path d="m488 65 12-10 48 48-12 12z" opacity=".55"/>
+  </g>
+  <g fill="none" stroke="#acb8fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M458 67h-7v90h7m76-90h7v90h-7"/>
+  </g>
+  <path d="m302 166 6 6 12-14" fill="none" stroke="#edeadd" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

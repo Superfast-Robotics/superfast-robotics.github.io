@@ -18,7 +18,7 @@
   <meta property="og:description" content="From 0.1 bits per weight to a robot moving fruit: the story of LittleBit and the question that led us into robotics.">
   <meta property="og:url" content="https://superfastrobotics.com/writings/essay-001">
   <link rel="stylesheet" href="/style.css?v=20261103-writings">
-  <link rel="stylesheet" href="/writings.css?v=20261103-citation">
+  <link rel="stylesheet" href="/writings.css?v=20261106-illustrations">
   <script src="/writings.js?v=20261103-citation" defer></script>
 </head>
 <body class="reading-page">
@@ -53,6 +53,10 @@
             <p>This was getting interesting.</p>
             <p>That was the beginning of LittleBit.</p>
             <p>The rough recipe: approximate a large weight matrix with a combination of smaller matrices (SVD), represent those matrices with very few bits (low-bit quantization), and let the original model teach the compressed one how to behave (QAKD). Three technical names for a simple question: how much space does intelligence actually need?</p>
+            <figure class="essay-illustration">
+              <img src="/assets/essay-littlebit-compression.svg" width="600" height="220" loading="lazy" decoding="async" alt="A large dotted weight matrix becomes compact factors, with its bright pattern carried into the smaller pieces.">
+              <figcaption><span aria-hidden="true">01 /</span> Less to store. Still plenty to say.</figcaption>
+            </figure>
             <p>We pushed down to an effective 0.1 bits per original weight. Compared with 16-bit weights, that is a 160x reduction in the bits used to represent the compressed weights. That ratio applies to the compressed weight representation, rather than the entire model’s memory footprint. Even so, 0.1 bits is a strange place to find a working language model.</p>
             <p>We published <a href="https://arxiv.org/abs/2506.13771">LittleBit</a> in 2025 and presented it at NeurIPS that December. People kept asking us the same question we were asking ourselves:</p>
             <blockquote><p>“Why does this work?”</p></blockquote>
@@ -65,6 +69,10 @@
             <p>We started with speech recognition. We built a remarkably small model that could still recognize speech, and presented the work at <a href="https://www.isca-archive.org/interspeech_2026/yeo26_interspeech.html">Interspeech 2026</a>. But one of the biggest surprises came from speculative decoding.</p>
             <p>The idea is simple. A small model drafts the next few tokens. A larger model checks them together. The small model is a fast first-draft writer. It needs to be quick, and its guesses need to be useful.</p>
             <p>We made that writer roughly 100x smaller. Its acceptance length, the number of draft tokens accepted in a round, still held at about 60–80% of the original draft model’s level. A hundredth of the size, and still writing useful drafts. Think 1 GB becoming roughly 10 MB.</p>
+            <figure class="essay-illustration">
+              <img src="/assets/essay-on-device.svg" width="600" height="220" loading="lazy" decoding="async" alt="A tiny model inside a phone drafts a row of tokens for a larger model to check.">
+              <figcaption><span aria-hidden="true">02 /</span> A tiny model, drafting on-device.</figcaption>
+            </figure>
             <p>The technology reached commercial deployment as a key on-device acceleration model for next-generation Galaxy smartphones. In our internal comparisons, our draft was more than 2x faster than Google’s <a href="https://ai.google.dev/gemma/docs/mtp/overview">Gemma 4 E2B MTP</a> draft. Against <a href="https://www.liquid.ai/blog/lfm2.5-dspark">Liquid’s DSpark</a> draft, it was at most a quarter of the size and about twice as fast.</p>
             <p>Tiny models were doing useful work on real devices. We call it our little bit of magic.</p>
           </section>
@@ -74,6 +82,10 @@
             <p>A robot is a demanding place to put intelligence. Cameras and sensors keep sending data. The body needs frequent updates to stay balanced and move. Memory is limited. Chips get hot. Batteries run down. And the physical world does not pause while the model finishes thinking.</p>
             <p>Intelligence has to fit inside all of that.</p>
             <p>This was the question LittleBit had been preparing us to ask. Maybe robotics was where this technology belonged all along.</p>
+            <figure class="essay-illustration">
+              <img src="/assets/essay-robotics.svg" width="600" height="220" loading="lazy" decoding="async" alt="A robot arm with a small dotted model in its base carries a piece of fruit toward a basket.">
+              <figcaption><span aria-hidden="true">03 /</span> A small model meets the physical world.</figcaption>
+            </figure>
             <p>We want robots that see, think, and act using the computers inside their own bodies. Robots that do useful work around us, within a practical budget for hardware, power, and memory.</p>
             <p>So we put a very small model into a real robot.</p>
             <p>And we saw our first bit of magic. It picked up a piece of fruit and put it in a basket.</p>

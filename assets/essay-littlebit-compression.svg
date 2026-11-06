@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600" height="220">
+  <title>A little less space</title>
+  <desc>A large dotted weight matrix gives way to three compact factors. Cream-colored dots carry a trace of its structure into the smaller representation.</desc>
+  <defs>
+    <pattern id="cells" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect x="2" y="2" width="3" height="3" fill="#8295e9"/>
+    </pattern>
+    <pattern id="signal" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect x="2" y="2" width="3" height="3" fill="#edeadd"/>
+    </pattern>
+    <clipPath id="matrix"><rect x="80" y="48" width="120" height="120"/></clipPath>
+  </defs>
+  <g fill="none" stroke="#363d56" stroke-width="1">
+    <path d="M24 37V25h12m528 0h12v12M24 183v12h12m528 0h12v-12"/>
+    <path d="M72 40h120v120M64 32h120" opacity=".55"/>
+  </g>
+  <rect x="80" y="48" width="120" height="120" fill="url(#cells)" opacity=".82"/>
+  <g clip-path="url(#matrix)" fill="url(#signal)">
+    <path d="m69 47 20-12 125 123-19 18z"/>
+    <path d="m72 94 13-12 91 89-13 13zm52-57 14-11 78 78-13 13z" opacity=".55"/>
+  </g>
+  <g fill="none" stroke="#acb8fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M83 43h-8v130h8m114-130h8v130h-8"/>
+    <path d="M254 108h46m-8-6 8 6-8 6"/>
+  </g>
+  <g fill="none" stroke="#566184" stroke-width="1" stroke-dasharray="2 6">
+    <path d="M225 58c42 0 57 26 102 26M225 158c42 0 57-26 102-26"/>
+  </g>
+  <g fill="url(#cells)">
+    <path d="M352 64h24v88h-24zM408 96h24v24h-24zM464 96h72v24h-72z"/>
+  </g>
+  <g fill="url(#signal)">
+    <path d="M352 64h8v32h-8zM360 96h8v32h-8zM368 128h8v24h-8zM464 96h32v8h-32zM496 104h40v8h-40z"/>
+  </g>
+  <g fill="none" stroke="#acb8fa" stroke-width="1.5" stroke-linecap="round">
+    <path d="M354 59h-7v98h7m20-98h7v98h-7M410 91h-7v34h7m20-34h7v34h-7M466 91h-7v34h7m68-34h7v34h-7"/>
+  </g>
+  <g fill="#edeadd">
+    <path d="M410 98h3v3h-3zm8 8h3v3h-3zm8 8h3v3h-3z"/>
+    <circle cx="393" cy="108" r="1.5"/><circle cx="448" cy="108" r="1.5"/>
+  </g>
+  <path d="M484 61v10m-5-5h10" fill="none" stroke="#edeadd" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
