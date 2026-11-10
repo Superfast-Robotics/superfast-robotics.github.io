@@ -24,8 +24,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/style.css?v=20261103-writings">
   <link rel="stylesheet" href="/writings.css?v=20261103-citation">
-  <link rel="stylesheet" href="/demo.css?v=20261103-setups">
-  <script src="/demo.js?v=20261103-setups" defer></script>
+  <link rel="stylesheet" href="/demo.css?v=20261110-rollouts">
+  <script src="/demo.js?v=20261110-rollouts-autoplay" defer></script>
   <script src="/writings.js?v=20261103-citation" defer></script>
 </head>
 <body class="reading-page">
@@ -66,11 +66,11 @@
             <p>We added one more constraint: compress the language-model backbone by 160x.</p>
             <p>That sounded a little unreasonable. So we tried it.</p>
             <figure class="demo-media" id="footage" aria-label="Demo 001 footage">
-              <video id="demo-video" controls playsinline preload="metadata" poster="/demo-001-poster.jpg" width="1920" height="1080" aria-label="Superfast Robotics Demo 001">
-                <source src="/demo-001.mp4" type="video/mp4">
-                Your browser does not support embedded video. <a href="/demo-001.mp4">Open the demo video</a>.
+              <video id="demo-video" controls muted playsinline data-default-rate="4" preload="metadata" poster="/demo-001-poster.jpg" width="1920" height="1080" aria-label="Superfast Robotics Demo 001">
+                <source src="/assets/rollouts/demo-001-silent.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="/assets/rollouts/demo-001-silent.mp4">Open the demo video</a>.
               </video>
-              <figcaption><span><b>Film 01</b> / Onboard pick-and-place</span><button class="fullscreen-button" type="button" aria-controls="demo-video" hidden>Full screen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M6 2H2v4m8-4h4v4M2 10v4h4m8-4v4h-4"/></svg></button></figcaption>
+              <figcaption><span><b>Film 01</b> / Onboard pick-and-place</span><div class="demo-player-tools"><div class="demo-speed" role="group" aria-label="Video playback speed"><span>Playback</span><button type="button" data-demo-speed="1" aria-controls="demo-video" aria-pressed="false">1×</button><button type="button" data-demo-speed="4" aria-controls="demo-video" aria-pressed="true">4×</button></div><button class="fullscreen-button" type="button" aria-controls="demo-video" hidden>Full screen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M6 2H2v4m8-4h4v4M2 10v4h4m8-4v4h-4"/></svg></button></div></figcaption>
               <p class="video-status" role="status" hidden>Could not open full screen. Please use the video player's controls.</p>
             </figure>
           </section>
@@ -82,7 +82,7 @@
             <p>For compression training, we used FruitCollection from the WLA training data and QAKD to transfer the original model’s behavior. We connected the model to the robot with our preliminary custom IK solver: the part that turns a desired hand position into joint movements.</p>
             <p>This was an early checkpoint. We had completed less than 10% of the planned training. We had also left out RTC, which could make the motions flow more smoothly. There was plenty left to improve. We put the robot in front of the table anyway.</p>
             <figure class="conditions-plate" id="setups" aria-labelledby="plate-caption">
-              <figcaption id="plate-caption">Evaluation setups</figcaption>
+              <figcaption id="plate-caption"><span>Evaluation rollouts<small>18 clips · 4× playback</small></span><button class="rollout-motion" type="button" aria-controls="setups" aria-pressed="false" hidden>Pause clips</button></figcaption>
               <div class="plate-set" role="group" aria-labelledby="plate-kitchen">
                 <h3 id="plate-kitchen">Kitchen</h3>
                 <div class="plate-grid">
@@ -91,23 +91,23 @@
                   <span class="plate-axis tomato" aria-hidden="true">Tomato</span>
                   <span class="plate-axis round" aria-hidden="true">Round basket</span>
                   <span class="plate-axis rectangular" aria-hidden="true">Rectangular basket</span>
-                  <a class="plate-photo round-tangerine" href="/assets/demo001-kitchen-round-tangerine.webp" aria-label="Enlarge photo: Kitchen, tangerine, round basket">
-                    <img src="/assets/demo001-kitchen-round-tangerine-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tangerine · Round basket">
+                  <a class="plate-photo round-tangerine" href="/assets/rollouts/kitchen-round-tangerine.gif" aria-label="Enlarge rollout: Kitchen, tangerine, round basket">
+                    <img src="/assets/rollouts/kitchen-round-tangerine.jpg" data-animated-src="/assets/rollouts/kitchen-round-tangerine.gif" data-still-src="/assets/rollouts/kitchen-round-tangerine.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tangerine · Round basket">
                   </a>
-                  <a class="plate-photo round-banana" href="/assets/demo001-kitchen-round-banana.webp" aria-label="Enlarge photo: Kitchen, banana, round basket">
-                    <img src="/assets/demo001-kitchen-round-banana-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Banana · Round basket">
+                  <a class="plate-photo round-banana" href="/assets/rollouts/kitchen-round-banana.gif" aria-label="Enlarge rollout: Kitchen, banana, round basket">
+                    <img src="/assets/rollouts/kitchen-round-banana.jpg" data-animated-src="/assets/rollouts/kitchen-round-banana.gif" data-still-src="/assets/rollouts/kitchen-round-banana.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Banana · Round basket">
                   </a>
-                  <a class="plate-photo round-tomato" href="/assets/demo001-kitchen-round-tomato.webp" aria-label="Enlarge photo: Kitchen, tomato, round basket">
-                    <img src="/assets/demo001-kitchen-round-tomato-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tomato · Round basket">
+                  <a class="plate-photo round-tomato" href="/assets/rollouts/kitchen-round-tomato.gif" aria-label="Enlarge rollout: Kitchen, tomato, round basket">
+                    <img src="/assets/rollouts/kitchen-round-tomato.jpg" data-animated-src="/assets/rollouts/kitchen-round-tomato.gif" data-still-src="/assets/rollouts/kitchen-round-tomato.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tomato · Round basket">
                   </a>
-                  <a class="plate-photo rectangular-tangerine" href="/assets/demo001-kitchen-rectangular-tangerine.webp" aria-label="Enlarge photo: Kitchen, tangerine, rectangular basket">
-                    <img src="/assets/demo001-kitchen-rectangular-tangerine-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tangerine · Rectangular basket">
+                  <a class="plate-photo rectangular-tangerine" href="/assets/rollouts/kitchen-rectangular-tangerine.gif" aria-label="Enlarge rollout: Kitchen, tangerine, rectangular basket">
+                    <img src="/assets/rollouts/kitchen-rectangular-tangerine.jpg" data-animated-src="/assets/rollouts/kitchen-rectangular-tangerine.gif" data-still-src="/assets/rollouts/kitchen-rectangular-tangerine.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tangerine · Rectangular basket">
                   </a>
-                  <a class="plate-photo rectangular-banana" href="/assets/demo001-kitchen-rectangular-banana.webp" aria-label="Enlarge photo: Kitchen, banana, rectangular basket">
-                    <img src="/assets/demo001-kitchen-rectangular-banana-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Banana · Rectangular basket">
+                  <a class="plate-photo rectangular-banana" href="/assets/rollouts/kitchen-rectangular-banana.gif" aria-label="Enlarge rollout: Kitchen, banana, rectangular basket">
+                    <img src="/assets/rollouts/kitchen-rectangular-banana.jpg" data-animated-src="/assets/rollouts/kitchen-rectangular-banana.gif" data-still-src="/assets/rollouts/kitchen-rectangular-banana.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Banana · Rectangular basket">
                   </a>
-                  <a class="plate-photo rectangular-tomato" href="/assets/demo001-kitchen-rectangular-tomato.webp" aria-label="Enlarge photo: Kitchen, tomato, rectangular basket">
-                    <img src="/assets/demo001-kitchen-rectangular-tomato-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tomato · Rectangular basket">
+                  <a class="plate-photo rectangular-tomato" href="/assets/rollouts/kitchen-rectangular-tomato.gif" aria-label="Enlarge rollout: Kitchen, tomato, rectangular basket">
+                    <img src="/assets/rollouts/kitchen-rectangular-tomato.jpg" data-animated-src="/assets/rollouts/kitchen-rectangular-tomato.gif" data-still-src="/assets/rollouts/kitchen-rectangular-tomato.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Kitchen · Tomato · Rectangular basket">
                   </a>
                 </div>
               </div>
@@ -119,23 +119,23 @@
                   <span class="plate-axis tomato" aria-hidden="true">Tomato</span>
                   <span class="plate-axis round" aria-hidden="true">Round basket</span>
                   <span class="plate-axis rectangular" aria-hidden="true">Rectangular basket</span>
-                  <a class="plate-photo round-tangerine" href="/assets/demo001-meeting-room-round-tangerine.webp" aria-label="Enlarge photo: Meeting room, tangerine, round basket">
-                    <img src="/assets/demo001-meeting-room-round-tangerine-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tangerine · Round basket">
+                  <a class="plate-photo round-tangerine" href="/assets/rollouts/meeting-room-round-tangerine.gif" aria-label="Enlarge rollout: Meeting room, tangerine, round basket">
+                    <img src="/assets/rollouts/meeting-room-round-tangerine.jpg" data-animated-src="/assets/rollouts/meeting-room-round-tangerine.gif" data-still-src="/assets/rollouts/meeting-room-round-tangerine.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tangerine · Round basket">
                   </a>
-                  <a class="plate-photo round-banana" href="/assets/demo001-meeting-room-round-banana.webp" aria-label="Enlarge photo: Meeting room, banana, round basket">
-                    <img src="/assets/demo001-meeting-room-round-banana-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Banana · Round basket">
+                  <a class="plate-photo round-banana" href="/assets/rollouts/meeting-room-round-banana.gif" aria-label="Enlarge rollout: Meeting room, banana, round basket">
+                    <img src="/assets/rollouts/meeting-room-round-banana.jpg" data-animated-src="/assets/rollouts/meeting-room-round-banana.gif" data-still-src="/assets/rollouts/meeting-room-round-banana.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Banana · Round basket">
                   </a>
-                  <a class="plate-photo round-tomato" href="/assets/demo001-meeting-room-round-tomato.webp" aria-label="Enlarge photo: Meeting room, tomato, round basket">
-                    <img src="/assets/demo001-meeting-room-round-tomato-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tomato · Round basket">
+                  <a class="plate-photo round-tomato" href="/assets/rollouts/meeting-room-round-tomato.gif" aria-label="Enlarge rollout: Meeting room, tomato, round basket">
+                    <img src="/assets/rollouts/meeting-room-round-tomato.jpg" data-animated-src="/assets/rollouts/meeting-room-round-tomato.gif" data-still-src="/assets/rollouts/meeting-room-round-tomato.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tomato · Round basket">
                   </a>
-                  <a class="plate-photo rectangular-tangerine" href="/assets/demo001-meeting-room-rectangular-tangerine.webp" aria-label="Enlarge photo: Meeting room, tangerine, rectangular basket">
-                    <img src="/assets/demo001-meeting-room-rectangular-tangerine-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tangerine · Rectangular basket">
+                  <a class="plate-photo rectangular-tangerine" href="/assets/rollouts/meeting-room-rectangular-tangerine.gif" aria-label="Enlarge rollout: Meeting room, tangerine, rectangular basket">
+                    <img src="/assets/rollouts/meeting-room-rectangular-tangerine.jpg" data-animated-src="/assets/rollouts/meeting-room-rectangular-tangerine.gif" data-still-src="/assets/rollouts/meeting-room-rectangular-tangerine.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tangerine · Rectangular basket">
                   </a>
-                  <a class="plate-photo rectangular-banana" href="/assets/demo001-meeting-room-rectangular-banana.webp" aria-label="Enlarge photo: Meeting room, banana, rectangular basket">
-                    <img src="/assets/demo001-meeting-room-rectangular-banana-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Banana · Rectangular basket">
+                  <a class="plate-photo rectangular-banana" href="/assets/rollouts/meeting-room-rectangular-banana.gif" aria-label="Enlarge rollout: Meeting room, banana, rectangular basket">
+                    <img src="/assets/rollouts/meeting-room-rectangular-banana.jpg" data-animated-src="/assets/rollouts/meeting-room-rectangular-banana.gif" data-still-src="/assets/rollouts/meeting-room-rectangular-banana.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Banana · Rectangular basket">
                   </a>
-                  <a class="plate-photo rectangular-tomato" href="/assets/demo001-meeting-room-rectangular-tomato.webp" aria-label="Enlarge photo: Meeting room, tomato, rectangular basket">
-                    <img src="/assets/demo001-meeting-room-rectangular-tomato-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tomato · Rectangular basket">
+                  <a class="plate-photo rectangular-tomato" href="/assets/rollouts/meeting-room-rectangular-tomato.gif" aria-label="Enlarge rollout: Meeting room, tomato, rectangular basket">
+                    <img src="/assets/rollouts/meeting-room-rectangular-tomato.jpg" data-animated-src="/assets/rollouts/meeting-room-rectangular-tomato.gif" data-still-src="/assets/rollouts/meeting-room-rectangular-tomato.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Meeting room · Tomato · Rectangular basket">
                   </a>
                 </div>
               </div>
@@ -147,23 +147,23 @@
                   <span class="plate-axis tomato" aria-hidden="true">Tomato</span>
                   <span class="plate-axis round" aria-hidden="true">Round basket</span>
                   <span class="plate-axis rectangular" aria-hidden="true">Rectangular basket</span>
-                  <a class="plate-photo round-tangerine" href="/assets/demo001-warehouse-round-tangerine.webp" aria-label="Enlarge photo: Warehouse, tangerine, round basket">
-                    <img src="/assets/demo001-warehouse-round-tangerine-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tangerine · Round basket">
+                  <a class="plate-photo round-tangerine" href="/assets/rollouts/warehouse-round-tangerine.gif" aria-label="Enlarge rollout: Warehouse, tangerine, round basket">
+                    <img src="/assets/rollouts/warehouse-round-tangerine.jpg" data-animated-src="/assets/rollouts/warehouse-round-tangerine.gif" data-still-src="/assets/rollouts/warehouse-round-tangerine.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tangerine · Round basket">
                   </a>
-                  <a class="plate-photo round-banana" href="/assets/demo001-warehouse-round-banana.webp" aria-label="Enlarge photo: Warehouse, banana, round basket">
-                    <img src="/assets/demo001-warehouse-round-banana-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Banana · Round basket">
+                  <a class="plate-photo round-banana" href="/assets/rollouts/warehouse-round-banana.gif" aria-label="Enlarge rollout: Warehouse, banana, round basket">
+                    <img src="/assets/rollouts/warehouse-round-banana.jpg" data-animated-src="/assets/rollouts/warehouse-round-banana.gif" data-still-src="/assets/rollouts/warehouse-round-banana.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Banana · Round basket">
                   </a>
-                  <a class="plate-photo round-tomato" href="/assets/demo001-warehouse-round-tomato.webp" aria-label="Enlarge photo: Warehouse, tomato, round basket">
-                    <img src="/assets/demo001-warehouse-round-tomato-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tomato · Round basket">
+                  <a class="plate-photo round-tomato" href="/assets/rollouts/warehouse-round-tomato.gif" aria-label="Enlarge rollout: Warehouse, tomato, round basket">
+                    <img src="/assets/rollouts/warehouse-round-tomato.jpg" data-animated-src="/assets/rollouts/warehouse-round-tomato.gif" data-still-src="/assets/rollouts/warehouse-round-tomato.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tomato · Round basket">
                   </a>
-                  <a class="plate-photo rectangular-tangerine" href="/assets/demo001-warehouse-rectangular-tangerine.webp" aria-label="Enlarge photo: Warehouse, tangerine, rectangular basket">
-                    <img src="/assets/demo001-warehouse-rectangular-tangerine-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tangerine · Rectangular basket">
+                  <a class="plate-photo rectangular-tangerine" href="/assets/rollouts/warehouse-rectangular-tangerine.gif" aria-label="Enlarge rollout: Warehouse, tangerine, rectangular basket">
+                    <img src="/assets/rollouts/warehouse-rectangular-tangerine.jpg" data-animated-src="/assets/rollouts/warehouse-rectangular-tangerine.gif" data-still-src="/assets/rollouts/warehouse-rectangular-tangerine.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tangerine · Rectangular basket">
                   </a>
-                  <a class="plate-photo rectangular-banana" href="/assets/demo001-warehouse-rectangular-banana.webp" aria-label="Enlarge photo: Warehouse, banana, rectangular basket">
-                    <img src="/assets/demo001-warehouse-rectangular-banana-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Banana · Rectangular basket">
+                  <a class="plate-photo rectangular-banana" href="/assets/rollouts/warehouse-rectangular-banana.gif" aria-label="Enlarge rollout: Warehouse, banana, rectangular basket">
+                    <img src="/assets/rollouts/warehouse-rectangular-banana.jpg" data-animated-src="/assets/rollouts/warehouse-rectangular-banana.gif" data-still-src="/assets/rollouts/warehouse-rectangular-banana.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Banana · Rectangular basket">
                   </a>
-                  <a class="plate-photo rectangular-tomato" href="/assets/demo001-warehouse-rectangular-tomato.webp" aria-label="Enlarge photo: Warehouse, tomato, rectangular basket">
-                    <img src="/assets/demo001-warehouse-rectangular-tomato-sm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tomato · Rectangular basket">
+                  <a class="plate-photo rectangular-tomato" href="/assets/rollouts/warehouse-rectangular-tomato.gif" aria-label="Enlarge rollout: Warehouse, tomato, rectangular basket">
+                    <img src="/assets/rollouts/warehouse-rectangular-tomato.jpg" data-animated-src="/assets/rollouts/warehouse-rectangular-tomato.gif" data-still-src="/assets/rollouts/warehouse-rectangular-tomato.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Warehouse · Tomato · Rectangular basket">
                   </a>
                 </div>
               </div>
@@ -256,9 +256,10 @@
       <div class="viewer-bar"><p id="viewer-caption"></p><button type="button" class="viewer-close" autofocus>Close <span aria-hidden="true">×</span></button></div>
       <div class="viewer-frame"></div>
       <div class="viewer-controls">
-        <button type="button" class="viewer-prev" aria-label="Previous photo">←</button>
+        <button type="button" class="viewer-prev" aria-label="Previous rollout">←</button>
         <span class="viewer-count" aria-live="polite" aria-atomic="true"></span>
-        <button type="button" class="viewer-next" aria-label="Next photo">→</button>
+        <button type="button" class="viewer-motion" aria-controls="viewer-rollout" aria-pressed="false" hidden>Pause clips</button>
+        <button type="button" class="viewer-next" aria-label="Next rollout">→</button>
       </div>
     </div>
   </dialog>
