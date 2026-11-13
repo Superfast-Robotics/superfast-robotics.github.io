@@ -62,6 +62,10 @@
 .publication { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-bottom: 16px; }
 .publication .kicker { color: var(--ink); font-size: 12px; letter-spacing: 0; text-transform: none; }
 .publication .byline { color: var(--copy); font-size: 12px; white-space: nowrap; }
+.publication .author-profile { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; min-width: 0; }
+.publication .author-links { display: inline-flex; align-items: center; gap: 8px; }
+.publication .author-links a { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; color: #b2bfff; font-size: 11px; line-height: 1.5; text-decoration: underline; text-decoration-color: #6777b3; text-underline-offset: .2em; }
+.publication .author-links a:hover { color: var(--ink); text-decoration-color: currentColor; }
 .publication time { color: var(--muted); letter-spacing: .04em; }
 .article-grid { display: grid; grid-template-columns: minmax(138px, 19%) minmax(0, 1fr); align-items: start; gap: clamp(24px, 4vw, 64px); padding-top: clamp(30px, 4vw, 50px); }
 .contents { position: sticky; top: 32px; padding-bottom: 8px; }
