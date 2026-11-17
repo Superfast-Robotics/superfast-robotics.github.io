@@ -1,0 +1,59 @@
+# Select seed-portal/render.yaml as the Blueprint path when deploying this monorepo.
+# If seed-portal becomes its own repository, remove rootDir below.
+services:
+  - type: web
+    name: superfast-seed-portal
+    runtime: node
+    rootDir: seed-portal
+    plan: 0.5c-512mb
+    numInstances: 1
+    buildCommand: npm ci --omit=dev && npm run check
+    startCommand: npm run start:production
+    healthCheckPath: /healthz
+    autoDeployTrigger: 'off'
+    domains:
+      - seed.superfastrobotics.com
+      - superadmin.superfastrobotics.com
+    disk:
+      name: seed-portal-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: SEED_ORIGIN
+        value: https://seed.superfastrobotics.com
+      - key: ADMIN_ORIGIN
+        value: https://superadmin.superfastrobotics.com
+      - key: TRUST_PROXY
+        value: '1'
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: CODE_DAYS
+        value: '10'
+      - key: SESSION_DAYS
+        value: '90'
+      - key: RETENTION_DAYS
+        value: '365'
+      - key: MAIL_PROVIDER
+        value: smtp
+      - key: MAIL_FROM
+        value: Superfast Robotics <hello@superfastrobotics.com>
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: '587'
+      - key: SMTP_SECURE
+        value: 'false'
+      - key: SMTP_USER
+        value: hello@superfastrobotics.com
+      - key: SMTP_PASS
+        sync: false

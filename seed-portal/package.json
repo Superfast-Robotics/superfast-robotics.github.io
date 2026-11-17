@@ -1,0 +1,27 @@
+{
+  "name": "superfast-seed-portal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "start": "node --env-file=.env src/server.js",
+    "start:production": "node src/server.js",
+    "test": "node --test",
+    "import:deck": "node --env-file=.env scripts/import-deck.js",
+    "check": "node scripts/check.js",
+    "mail:verify": "node --env-file=.env scripts/verify-mail.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^10.6.0",
+    "pdfjs-dist": "4.10.38"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.4"
+  }
+}

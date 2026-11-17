@@ -1,0 +1,12 @@
+node_modules
+data
+.env
+.env.*
+!.env.example
+.git
+coverage
+test
+*.log
+README.md
+API.md
+render.yaml
