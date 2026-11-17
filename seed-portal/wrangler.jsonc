@@ -7,6 +7,10 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
   "preview_urls": false,
+  "routes": [
+    { "pattern": "seed.superfastrobotics.com", "custom_domain": true },
+    { "pattern": "superadmin.superfastrobotics.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": ".cloudflare-assets",
     "binding": "ASSETS",
@@ -17,7 +21,7 @@
   "d1_databases": [{
     "binding": "DB",
     "database_name": "superfast-seed-portal",
-    "database_id": "00000000-0000-0000-0000-000000000000"
+    "database_id": "6f2983c7-9ce6-4741-a884-9a2c6ff1eebc"
   }],
   "r2_buckets": [{ "binding": "DECKS", "bucket_name": "superfast-seed-decks" }],
   "durable_objects": { "bindings": [{ "name": "PORTAL_API", "class_name": "PortalApi" }] },

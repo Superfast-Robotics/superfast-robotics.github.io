@@ -42,18 +42,51 @@ for (const file of manifest.files) {
   entries.push({ ...file, filename, absolute });
 }
 if (!entries.some(x => x.filename === 'index.html')) throw new Error('Missing deck entry');
-const save = () => fs.writeFile(checkpoint, JSON.stringify(progress, null, 2));
-await save();
-// One upload at a time keeps checkpoints durable and avoids CLI process spikes.
-for (let index=0; index<entries.length; index++) {
-  const file=entries[index];
-  if (progress.uploaded[file.filename] !== file.sha256) {
-    await command(['r2','object','put',`superfast-seed-decks/decks/${progress.id}/${file.filename}`,mode,'--file',file.absolute,'--cache-control','private, no-store']);
-    progress.uploaded[file.filename]=file.sha256;
-    await save();
-  }
-  if ((index+1)%10===0 || index===entries.length-1) console.log(`Stored ${index+1}/${entries.length} reviewed deck files.`);
+let checkpointWrites = Promise.resolve();
+function save() {
+  // Snapshot in completion order, then serialize writes so an older upload
+  // cannot overwrite a newer success. Rename only after the file is flushed;
+  // interruption leaves either the previous checkpoint or the complete new one.
+  const snapshot = JSON.stringify(progress, null, 2);
+  const pending = checkpointWrites.then(async () => {
+    const temporary = `${checkpoint}.${process.pid}.tmp`;
+    const handle = await fs.open(temporary, 'w');
+    try { await handle.writeFile(snapshot); await handle.sync(); }
+    finally { await handle.close(); }
+    await fs.rename(temporary, checkpoint);
+  });
+  // A failed write is reported to its upload task, while later successes can
+  // still save their cumulative snapshot before the importer stops.
+  checkpointWrites = pending.catch(() => {});
+  return pending;
 }
+await save();
+let nextIndex=0, completed=0, stopScheduling=false;
+async function uploadWorker() {
+  while (!stopScheduling) {
+    const index=nextIndex++;
+    if (index>=entries.length) return;
+    const file=entries[index];
+    try {
+      if (progress.uploaded[file.filename] !== file.sha256) {
+        await command(['r2','object','put',`superfast-seed-decks/decks/${progress.id}/${file.filename}`,mode,'--file',file.absolute,'--cache-control','private, no-store']);
+        progress.uploaded[file.filename]=file.sha256;
+        await save();
+      }
+      completed++;
+      if (completed%10===0 || completed===entries.length) console.log(`Stored ${completed}/${entries.length} reviewed deck files.`);
+    } catch (error) {
+      stopScheduling=true;
+      throw new Error(`Could not store ${file.filename}: ${error.message}`, { cause:error });
+    }
+  }
+}
+// At most three Wrangler upload processes run together. On failure, stop
+// scheduling but let every in-flight upload persist its successful checksum.
+const uploads=await Promise.allSettled(Array.from({length:Math.min(3,entries.length)},()=>uploadWorker()));
+await save();
+const failedUpload=uploads.find(result=>result.status==='rejected');
+if (failedUpload) throw failedUpload.reason;
 const quote = value => value == null ? 'NULL' : `'${String(value).replaceAll("'", "''")}'`;
 const sql=`INSERT INTO decks(id,title,version,kind,page_count,created_at,files_json,pdf_file)
 VALUES (${quote(progress.id)},${quote(manifest.title)},${quote(manifest.version)},'html',${manifest.pageCount},${progress.createdAt},${quote(JSON.stringify(entries.map(x=>x.filename)))},${quote(entries.some(x=>x.filename==='download.pdf')?'download.pdf':null)})

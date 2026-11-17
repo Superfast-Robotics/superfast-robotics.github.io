@@ -199,6 +199,17 @@ export function createHandler({ sendMail=sendAccessMail, now=Date.now, verifyPas
     const url=new URL(request.url), path=url.pathname, method=request.method;
     const timestamp=now();
     const origins=[config.seedOrigin,config.adminOrigin];
+    if (config.secureCookies && url.protocol==='http:' && ['GET','HEAD'].includes(method)) {
+      const configuredOrigin=origins.find(origin=>new URL(origin).hostname===url.hostname);
+      if (configuredOrigin) {
+        // Assign path/query separately so a path beginning with // cannot
+        // replace the configured host and become an external redirect.
+        const target=new URL(configuredOrigin);
+        target.pathname=url.pathname;
+        target.search=url.search;
+        return Response.redirect(target.href,308);
+      }
+    }
     if (!origins.includes(url.origin) && path!=='/healthz') bad(421,'Use the configured website address.');
     const adminHost=url.origin===config.adminOrigin;
     if (path.startsWith('/api/admin/') && !adminHost) bad(404,'Not found.');

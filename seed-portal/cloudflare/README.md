@@ -2,6 +2,10 @@
 
 운영 구성은 Workers + SQLite 기반 Durable Object + D1 + 비공개 R2입니다.
 
+2026-11-17에 Cloudflare 계정의 `superfast-seed-portal` Worker로 배포했습니다. `wrangler.jsonc`에 운영 D1 ID와 두 Custom Domain이 저장되어 있습니다. 재배포는 기존 리소스와 비밀값을 유지하며 `npm run cf:deploy`로 진행합니다.
+
+최초 게시 덱은 `seed-20m-v14`(16슬라이드)이며, 검토된 파일 110개를 해시 검증 후 비공개 R2에 가져왔습니다. 운영 관리자 로그인, SMTP TLS 인증·코드 발송, HTTPS 리다이렉트와 인증 없는 원본 파일 접근 차단을 확인했습니다.
+
 - `seed.superfastrobotics.com`: 방문자 로그인과 덱 뷰어
 - `superadmin.superfastrobotics.com`: 관리자 로그인과 대시보드
 - Workers: 공개 UI와 인증된 덱 파일 전달
@@ -33,6 +37,8 @@ ADMIN_ORIGIN=http://localhost:8787
 ```
 
 `.cloudflare-assets`에는 공개 UI와 PDF.js만 복사합니다. `assets.run_worker_first=true`로 설정되어 모든 요청이 서버의 호스트·인증 검사를 먼저 통과합니다. 덱 파일은 이 디렉터리에 넣지 않습니다.
+
+PDF.js의 CMap과 표준 폰트도 함께 배포하여 한글 및 폰트가 포함되지 않은 PDF를 지원합니다. 운영 도메인의 HTTP GET/HEAD 요청은 HTTPS로 이동합니다.
 
 `cloudflare/tests/portal.workerd.mjs`는 실제 workerd·D1·R2에서 인증과 동시성, 관리자 권한, 파일 Range 처리, PDF 업로드, Durable Object 전달을 검증합니다. `mail.test.js`는 TLS·SMTP 프로토콜과 오류 처리를 메일 발송 없이 검증합니다.
 

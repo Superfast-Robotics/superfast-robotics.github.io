@@ -262,6 +262,31 @@ test('workerd: host isolation, CSRF and visitor/admin role boundaries apply to a
   assert.equal(new URL((await h.client(ADMIN).get('/')).headers.get('location'), ADMIN).pathname, '/admin');
 });
 
+test('workerd: HTTP reads redirect only configured hosts while insecure writes stay rejected', async (t) => {
+  const h = await harness(t);
+  for (const secureOrigin of [SEED, ADMIN]) {
+    const insecureOrigin = secureOrigin.replace('https:', 'http:');
+    const visitor = h.client(insecureOrigin);
+    const get = await visitor.get('/?source=email&campaign=seed');
+    assert.equal(get.status, 308);
+    assert.equal(get.headers.get('location'), `${secureOrigin}/?source=email&campaign=seed`);
+    const head = await visitor.get('/admin?preview=deck-id', { method: 'HEAD' });
+    assert.equal(head.status, 308);
+    assert.equal(head.headers.get('location'), `${secureOrigin}/admin?preview=deck-id`);
+    assert.equal(head.bytes.length, 0);
+    const deceptivePath = await visitor.get('//attacker.example.com/path?next=external');
+    assert.equal(new URL(deceptivePath.headers.get('location')).origin, secureOrigin);
+    assert.equal(new URL(deceptivePath.headers.get('location')).pathname, '//attacker.example.com/path');
+    const write = await visitor.post('/api/auth/request', { email: 'reader@example.com' });
+    assert.equal(write.status, 421);
+    assert.equal(write.headers.get('location'), null);
+  }
+  assert.equal((await h.client('http://unknown.example.com').get('/')).status, 421);
+  assert.equal((await h.client('https://unknown.example.com').get('/')).status, 421);
+  assert.equal(h.sent.length, 0);
+  assert.equal((await h.client().get('/api/config')).status, 200);
+});
+
 test('workerd: private R2 media supports byte ranges and requires both download grants', async (t) => {
   const h = await harness(t), deck = await h.seedDeck();
   const reader = await h.login(), admin = await h.admin();
