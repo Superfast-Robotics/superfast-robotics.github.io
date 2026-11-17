@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const excluded = new Set(['node_modules', 'data', '.git', 'coverage']);
+const excluded = new Set(['node_modules', 'data', '.git', 'coverage', '.wrangler', '.cloudflare-assets', '.cloudflare-dist', '.cloudflare-import']);
 
 async function collect(directory) {
   const files = [];

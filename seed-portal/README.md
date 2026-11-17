@@ -6,6 +6,8 @@
 - 관리자: `https://superadmin.superfastrobotics.com` (로컬에서는 `/admin`)
 - 저장: SQLite 데이터베이스 및 덱 파일을 `DATA_DIR` 아래에 저장
 
+현재 운영 배포 대상은 **Cloudflare**입니다. 방문 기록은 D1, 덱 파일은 비공개 R2에 보관하고 Workers와 Durable Object가 인증·API를 처리합니다. 아래 Node 서버 설명은 로컬 개발 또는 기존 호스팅 방식이며, Cloudflare 설정과 배포 절차는 [cloudflare/README.md](cloudflare/README.md)를 따릅니다.
+
 ## 기본 동작
 
 누구나 이메일을 등록할 수 있습니다. 발송된 12자리 접근 코드는 **발급 후 10일 동안 유효하며 한 번만 사용**할 수 있습니다. 새 코드를 요청하면 이전 코드는 교체됩니다. 발송과 입력 시도는 제한됩니다.
